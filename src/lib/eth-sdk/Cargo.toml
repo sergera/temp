@@ -1,0 +1,30 @@
+[package]
+name = "eth-sdk"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+web3 = { version = "*", features = ["signing"] }
+token = { path = "../../token" }
+eyre = "*"
+tokio = { version = "1", features = ["full"] }
+secp256k1 = "*"
+crypto = { path = "../../crypto" }
+async-trait = "*"
+tracing-subscriber = { version = "*", features = ["env-filter"] }
+tracing-log = "*"
+tracing = "*"
+hex = "*"
+k256 = "*"
+rand = "*"
+once_cell = "*"
+serde = { version = "*", features = ["derive"] }
+serde_json = "*"
+bytes = "*"
+
+[features]
+default = []
+manual-tests = []
+
