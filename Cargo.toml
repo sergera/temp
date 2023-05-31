@@ -1,0 +1,33 @@
+[package]
+name = "copy-trade"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+eyre = "0.6.8"
+tokio = "1.28.2"
+web3 = { version = "0.18", features = ["signing"] }
+axum = { version = "0.6.18", default-features = false, features = [
+	"http1",
+	"json",
+	"matched-path",
+	"original-uri",
+	"tokio",
+] }
+secp256k1 = "0.21"
+
+
+# crypto = { path = "../../crypto" }
+async-trait = "*"
+hex = "*"
+k256 = "*"
+rand = "0.6.5"
+serde = { version = "*", features = ["derive"] }
+serde_json = "*"
+bytes = "*"
+deadpool = { version = "0.9.5", features = ["managed", "rt_tokio_1"] }
+der = "0.6.0"
+tiny-bip39 = "1.0.0"
+tiny-hderive = "0.3.0"
