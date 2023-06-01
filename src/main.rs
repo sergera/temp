@@ -16,8 +16,8 @@ mod crypto;
 mod dex_tracker;
 mod eth_sdk;
 mod evm;
-mod token;
 mod pancake;
+mod token;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -37,11 +37,27 @@ async fn main() -> Result<()> {
     // let contract = deployer.sign_with_key_and_execute((), &key).await?;
 
     // COPIED FROM ORIGINAL
+    // ETH MAINNET
+    // let eth_pool = EthereumRpcConnectionPool::new(
+    //     "https://solemn-dark-tree.quiknode.pro/57a79c40189d56356ac9433efd358f6c2cc05ca7/"
+    //         .to_string(),
+    //     10,
+    // )?;
+
+    // BSC MAINNET
     let eth_pool = EthereumRpcConnectionPool::new(
-        "https://solemn-dark-tree.quiknode.pro/57a79c40189d56356ac9433efd358f6c2cc05ca7/"
+        "https://side-red-tab.bsc.quiknode.pro/2b9b0587e2df9e2d47c5c988e97f675706da4427/"
             .to_string(),
         10,
     )?;
+
+    // BSC TESTNET
+    // let eth_pool = EthereumRpcConnectionPool::new(
+    //     "https://powerful-boldest-wish.bsc-testnet.quiknode.pro/f531774c5abbdd2b0b32ce8171849ef237396ea9/"
+    //         .to_string(),
+    //     10,
+    // )?;
+
     let app: Router<(), Body> = Router::new()
         .route("/eth-mainnet-swaps", post(handle_eth_swap_mainnet))
         .route("/eth-goerli-swaps", post(handle_eth_swap_goerli))

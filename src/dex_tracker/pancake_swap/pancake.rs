@@ -71,7 +71,7 @@ impl PancakeSwap {
         for call in function_calls {
             let method_name = call.get_name();
             println!("method name: {:?}", method_name);
-            println!("call: {:?}", call);
+            // println!("call: {:?}", call);
             if let Some(method) = self.get_method_by_name(&method_name) {
                 swap_infos.push(match method {
                     /* V2 */

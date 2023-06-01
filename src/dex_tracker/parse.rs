@@ -25,8 +25,8 @@ pub async fn parse_dex_trade(
                     bail!("does not support dex: SushiSwap");
                 }
             };
-            println!("");
-            println!("tx: {:?}", tx.get_hash());
+            // println!("");
+            // println!("tx: {:?}", tx.get_hash());
             println!("trade: {:?}", trade);
             return Ok(trade);
         }

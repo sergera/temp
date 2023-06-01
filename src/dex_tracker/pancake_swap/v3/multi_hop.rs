@@ -53,6 +53,18 @@ impl MultiHopPath {
         Ok(full_path)
     }
 
+    pub fn invert(paths: &Vec<Self>) -> Vec<Self> {
+        let mut inverted_paths: Vec<Self> = Vec::with_capacity(paths.len());
+        for path in paths.iter().rev() {
+            inverted_paths.push(Self {
+                first_token: path.second_token,
+                fee: path.fee,
+                second_token: path.first_token,
+            });
+        }
+        inverted_paths
+    }
+
     pub fn to_bytes(paths: &Vec<Self>) -> Result<Vec<u8>> {
         if paths.is_empty() {
             bail!("paths is empty");

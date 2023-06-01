@@ -112,7 +112,7 @@ pub async fn handle_eth_swap(
             //     println!("error caching transaction: {:?}", e);
             // };
             let trade = match parse_dex_trade(
-                EnumBlockChain::EthereumMainnet,
+                EnumBlockChain::BscMainnet,
                 &tx,
                 &state.dex_addresses,
                 &state.pancake_swap,
@@ -125,11 +125,15 @@ pub async fn handle_eth_swap(
                     return;
                 }
             };
+            // println!("trade: {:?}", trade);
             let contract = match PancakeSmartRouterV3Contract::new(
                 conn.clone().into_raw().clone(),
                 match H160::from_str(PANCAKE_ROUTER_MAINNET_ADDRESS) {
                     Ok(addr) => addr,
-                    Err(_) => H160::from_str(PANCAKE_ROUTER_TESTNET_ADDRESS).unwrap(),
+                    Err(_) => {
+                        println!("error parsing pancake router address");
+                        return;
+                    }
                 },
             ) {
                 Ok(contract) => contract,
@@ -139,7 +143,7 @@ pub async fn handle_eth_swap(
                 }
             };
             contract
-                .copy_trade(&key, trade, Some(U256::from(100)), None)
+                .copy_trade(&key, trade, U256::from(100), U256::from(0))
                 .await
                 .unwrap();
         });
